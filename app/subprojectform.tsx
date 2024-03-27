@@ -5,7 +5,7 @@ import { SubprojectType } from './api/subprojects/datas/subprojecttype';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
 import SearchPage from './search';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { MdClearAll } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
 import { GiSave } from 'react-icons/gi';
@@ -187,20 +187,25 @@ export default function SubprojectForm() {
 
 
     return (
+        <AnimatePresence>
         <div>
             {searchPage ?
+               <AnimatePresence>
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
                 >
                     <SearchPage open={() => setSearchPage(!searchPage)} />
                 </motion.div>
+                </AnimatePresence>
                 : <>
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
                     >
                         <div className=' items-center mt-10 p-6 flex flex-row gap-2 justify-between bg-gradient-to-br from-yellow-300 to-orange-500 rounded-lg shadow-2xl '>
                             <label className='sm:text-sm md:text-base lg:text-lg xl:text-3xl font-bold text-black text-center w-full flex justify-center'>
@@ -348,5 +353,6 @@ export default function SubprojectForm() {
                 </>}
 
         </div>
+        </AnimatePresence>
     );
 }
