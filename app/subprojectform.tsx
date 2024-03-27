@@ -45,9 +45,14 @@ export default function SubprojectForm() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.currentTarget;
-        if (name === 'projectCost' && !/^\d*$/.test(value)) return; // Only accept numbers
+    
+        // Regular expression to allow any amount including decimals and disallowing multiple periods and 0 as the first digit
+        if (name === 'projectCost' && !/^(?!0\d$)(\d*\.?\d*)$/.test(value)) return; 
+    
         setFormData({ ...formData, [name]: value });
     };
+    
+    
 
     const handleClear = () => {
         setFormData({
@@ -101,10 +106,8 @@ export default function SubprojectForm() {
         if (!formData.projectCost.trim()) {
             newErrors.projectCost = 'Project cost is required*';
             hasError = true;
-        } else if (!/^\d{1,3}(,\d{3})*(\.\d{2})?$/.test(formData.projectCost.trim())) {
-            newErrors.projectCost = 'Invalid project cost format*';
-            hasError = true;
-        } else {
+        } 
+        else {
             newErrors.projectCost = '';
         }
 
