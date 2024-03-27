@@ -35,6 +35,7 @@ export default function SubprojectForm() {
         subprojectType:'',
         region:'',
         province:'',
+        municipality:'',
         description: '',
         projectCost: '',
     });
@@ -60,6 +61,7 @@ export default function SubprojectForm() {
             subprojectType:'',
             region:'',
             province:'',
+            municipality:'',
             description: '',
             projectCost: '',
         });
@@ -126,6 +128,13 @@ export default function SubprojectForm() {
         } else {
             newErrors.province = '';
         }
+
+        if (!formData.municipality.trim()) {
+            newErrors.municipality = 'Municipality is required';
+            hasError = true;
+        } else {
+            newErrors.municipality = '';
+        }
     
         setErrors(newErrors);
     
@@ -190,8 +199,8 @@ export default function SubprojectForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-                <div className='mt-10 p-6 flex flex-row gap-2 justify-between bg-gradient-to-br from-yellow-300 to-orange-500 rounded-lg shadow-2xl '>
-                <label className='text-3xl font-bold text-black text-center w-full flex justify-center'>
+                <div className=' items-center mt-10 p-6 flex flex-row gap-2 justify-between bg-gradient-to-br from-yellow-300 to-orange-500 rounded-lg shadow-2xl '>
+                <label className='sm:text-sm md:text-base lg:text-lg xl:text-3xl font-bold text-black text-center w-full flex justify-center'>
                     SUBPROJECT PROFILE ENTRY FORM
                 </label>
                 <Image src="/DA_Logo.png" alt="DA Logo" width={40} height={40} />
@@ -201,7 +210,7 @@ export default function SubprojectForm() {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label htmlFor="subprojectName" className="block font-bold text-black">Subproject Name</label>
+                        <label htmlFor="subprojectName" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Subproject Name</label>
                         <input
                             id="subprojectName"
                             type="text"
@@ -214,24 +223,23 @@ export default function SubprojectForm() {
                         {errors.subprojectName && <p className="text-red-500 text-sm">{errors.subprojectName}</p>}
                     </div>
                     <div>
-                        <label htmlFor="subprojectType" className="block font-bold text-black">Subproject Type</label>
+                        <label htmlFor="subprojectType" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Subproject Type</label>
                         <select
                             id="subprojectType"
                             name="subprojectType"
                             value={formData.subprojectType}
                             onChange={handleChange}
-                            className="w-full px-3 py-2 mt-1 rounded-sm border border-gray-300 focus:outline-none focus:border-indigo-500 text-black"
-                        >
+                            className="w-full px-3 py-2 mt-1 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500 text-black">
                             <option value="">Select subproject type</option>
                             {Object.values(SubprojectType).map((type) => (
                                 <option key={type} value={type}>{type}</option>
                             ))}
                         </select>
-                        {errors.subprojectType && <p className="text-red-500 text-sm">{errors.subprojectType}</p>}
+                        {errors.subprojectType && <p className="sm:text-sm md:text-base lg:text-lg text-red-500 text-sm">{errors.subprojectType}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="description" className="block font-bold text-black">Description</label>
+                        <label htmlFor="description" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Description</label>
                         <input
                             id="description"
                             type="text"
@@ -241,10 +249,10 @@ export default function SubprojectForm() {
                             onChange={handleChange}
                             className="w-full px-3 py-2 mt-1 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500 text-black"
                         />
-                        {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+                        {errors.description && <p className="sm:text-sm md:text-base lg:text-lg text-red-500 text-sm">{errors.description}</p>}
                     </div>
                     <div>
-                        <label htmlFor="region" className="block font-bold text-black">Region</label>
+                        <label htmlFor="region" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Region</label>
                         <select
                             id="region"
                             name="region"
@@ -257,10 +265,10 @@ export default function SubprojectForm() {
                                 <option key={region} value={region}>{region}</option>
                             ))}
                         </select>
-                        {errors.region && <p className="text-red-500 text-sm">{errors.region}</p>}
+                        {errors.region && <p className="sm:text-sm md:text-base lg:text-lg text-red-500 text-sm">{errors.region}</p>}
                     </div>
                     <div>
-                        <label htmlFor="province" className="block font-bold text-black">Province</label>
+                        <label htmlFor="province" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Province</label>
                         <select
                             id="province"
                             name="province"
@@ -273,10 +281,10 @@ export default function SubprojectForm() {
                                 <option key={province} value={province}>{province}</option>
                             ))}
                         </select>
-                        {errors.province && <p className="text-red-500 text-sm">{errors.province}</p>}
+                        {errors.province && <p className="sm:text-sm md:text-base lg:text-lg text-red-500 text-sm">{errors.province}</p>}
                     </div>
                     <div>
-                        <label htmlFor="municipality" className="block font-bold text-black">Municipality</label>
+                        <label htmlFor="municipality" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Municipality</label>
                         <input
                             id="municipality"
                             type="text"
@@ -286,9 +294,10 @@ export default function SubprojectForm() {
                             onChange={handleChange}
                             className="w-full px-3 py-2 mt-1 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500 text-black"
                         />
+                         {errors.municipality && <p className="sm:text-sm md:text-base lg:text-lg text-red-500 text-sm">{errors.municipality}</p>}
                     </div>
                     <div>
-                        <label htmlFor="projectCost" className="block font-bold text-black">Project Cost (PHP)</label>
+                        <label htmlFor="projectCost" className="sm:text-sm md:text-base lg:text-lg block font-bold text-black">Project Cost (PHP)</label>
                         <input
                             id="projectCost"
                             type="text"
@@ -298,7 +307,7 @@ export default function SubprojectForm() {
                             onChange={handleChange}
                             className="w-full px-3 py-2 mt-1 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500 text-black"
                         />
-                        {errors.projectCost && <p className="text-red-500 text-sm">{errors.projectCost}</p>}
+                        {errors.projectCost && <p className="sm:text-sm md:text-base lg:text-lg text-red-500 text-sm">{errors.projectCost}</p>}
                     </div>
                     <div className="flex justify-between">
                         <button type="submit" className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600">Save</button>

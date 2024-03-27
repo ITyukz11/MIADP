@@ -15,7 +15,7 @@ export default function Home() {
           placeholder="blur"
         />
       </div>
-      <div className="relative z-10">
+      <div className="z-10">
         <SubprojectForm/>
       </div>
     </main>
