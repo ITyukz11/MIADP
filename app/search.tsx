@@ -57,7 +57,7 @@ const SearchPage: React.FC<{ open: () => void }> = ({ open }) => {
     };
     
     return (
-        <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto mt-8 px-4">
             <div className="flex justify-between mb-4">
                 <button onClick={handleBack} className="px-4 shadow-lg py-2 bg-gray-500 text-white rounded-md focus:outline-none hover:bg-gray-600">
                     Back
@@ -81,7 +81,7 @@ const SearchPage: React.FC<{ open: () => void }> = ({ open }) => {
                 </form>
             </div>
             <div className="overflow-x-auto">
-                <div className="overflow-auto align-middle">
+                <div className="overflow-auto align-middle overflow-y-hidden rounded-lg">
                     <table className="divide-y divide-gray-200 shadow-lg w-full">
                         {/* Table header */}
                         <thead className="bg-gradient-to-br from-yellow-200 to-orange-300 shadow-md">
