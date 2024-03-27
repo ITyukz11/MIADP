@@ -6,6 +6,9 @@ import Image from 'next/image';
 import Swal from 'sweetalert2';
 import SearchPage from './search';
 import { motion } from 'framer-motion';
+import { MdClearAll } from 'react-icons/md';
+import { FaSearch } from 'react-icons/fa';
+import { GiSave } from 'react-icons/gi';
 
 interface FormData {
     subprojectName: string;
@@ -327,10 +330,13 @@ export default function SubprojectForm() {
                                     />
                                 </div>
                                 <div className="flex justify-between">
-                                    <button type="submit" className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600">Save</button>
-                                    <button type="button" onClick={handleClear} className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600">Clear</button>
+                                 <div className='flex justify-start'>
+                                 <button type="button" className=" px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600" onClick={() => setSearchPage(true)}><FaSearch/></button>
 
-                                    <button type="button" className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600" onClick={() => setSearchPage(true)}>Search</button>
+<button type="button" onClick={handleClear} className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600 flex flex-row items-center gap-1">Clear <MdClearAll/> </button>
+                                    </div>   
+                               
+                                    <button type="submit" className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600 flex flex-row items-center gap-1"><GiSave/> Save</button>
 
 
                                 </div>

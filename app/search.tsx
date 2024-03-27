@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { MdSaveAs } from 'react-icons/md';
+import { RiArrowGoBackLine } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 
 const SearchPage: React.FC<{ open: () => void }> = ({ open }) => {
@@ -60,7 +63,7 @@ const SearchPage: React.FC<{ open: () => void }> = ({ open }) => {
         <div className="container mx-auto mt-8 px-4">
             <div className="flex justify-between mb-4">
                 <button onClick={handleBack} className="px-4 shadow-lg py-2 bg-gray-500 text-white rounded-md focus:outline-none hover:bg-gray-600">
-                    Back
+                    <RiArrowGoBackLine/>
                 </button>
                 <form onSubmit={handleSearch}>
                     <div className="flex">
@@ -74,8 +77,11 @@ const SearchPage: React.FC<{ open: () => void }> = ({ open }) => {
                         <button
                             type="submit"
                             className="ml-2 px-4 py-2 shadow-lg bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600"
+                            
                         >
-                            Search
+                                <FaSearch className=''/>
+                          
+
                         </button>
                     </div>
                 </form>
@@ -108,7 +114,7 @@ const SearchPage: React.FC<{ open: () => void }> = ({ open }) => {
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 overflow-hidden overflow-ellipsis" contentEditable onBlur={(e) => handleEdit(index, 'municipality', e.target.innerText)}>{item.municipality}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 overflow-hidden overflow-ellipsis" contentEditable onBlur={(e) => handleEdit(index, 'subprojectType', e.target.innerText)}>{item.subprojectType}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 overflow-hidden overflow-ellipsis" contentEditable onBlur={(e) => handleEdit(index, 'projectCost', e.target.innerText)}>{item.projectCost}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><button className="ml-2 px-4 py-2 bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600" onClick={() => handleUpdate(item.projectCost)}>Update</button></td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><button className="ml-2 px-4 py-2 bg-indigo-500 text-white rounded-md focus:outline-none hover:bg-indigo-600 flex flex-row items-center" onClick={() => handleUpdate(item.projectCost)}><MdSaveAs/>Update</button></td>
                                 </tr>
                             ))}
                         </tbody>
