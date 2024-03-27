@@ -32,6 +32,9 @@ export default function SubprojectForm() {
 
     const [errors, setErrors] = useState({
         subprojectName: '',
+        subprojectType:'',
+        region:'',
+        province:'',
         description: '',
         projectCost: '',
     });
@@ -54,6 +57,9 @@ export default function SubprojectForm() {
         });
         setErrors({
             subprojectName: '',
+            subprojectType:'',
+            region:'',
+            province:'',
             description: '',
             projectCost: '',
         });
@@ -67,11 +73,12 @@ export default function SubprojectForm() {
     };
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    
-        // Validation for subproject name, description, and project cost
+
+        // Validation for subproject name, description, project cost, subproject type, region, and province
         const newErrors = { ...errors };
         let hasError = false;
     
+        // Validation for subproject name, description, and project cost (same as before)
         if (!formData.subprojectName.trim()) {
             newErrors.subprojectName = 'Subproject name is required';
             hasError = true;
@@ -94,6 +101,30 @@ export default function SubprojectForm() {
             hasError = true;
         } else {
             newErrors.projectCost = '';
+        }
+    
+        // Validation for subproject type
+        if (!formData.subprojectType.trim()) {
+            newErrors.subprojectType = 'Subproject type is required';
+            hasError = true;
+        } else {
+            newErrors.subprojectType = '';
+        }
+    
+        // Validation for region
+        if (!formData.region.trim()) {
+            newErrors.region = 'Region is required';
+            hasError = true;
+        } else {
+            newErrors.region = '';
+        }
+    
+        // Validation for province
+        if (!formData.province.trim()) {
+            newErrors.province = 'Province is required';
+            hasError = true;
+        } else {
+            newErrors.province = '';
         }
     
         setErrors(newErrors);
@@ -196,6 +227,7 @@ export default function SubprojectForm() {
                                 <option key={type} value={type}>{type}</option>
                             ))}
                         </select>
+                        {errors.subprojectType && <p className="text-red-500 text-sm">{errors.subprojectType}</p>}
                     </div>
 
                     <div>
@@ -225,6 +257,7 @@ export default function SubprojectForm() {
                                 <option key={region} value={region}>{region}</option>
                             ))}
                         </select>
+                        {errors.region && <p className="text-red-500 text-sm">{errors.region}</p>}
                     </div>
                     <div>
                         <label htmlFor="province" className="block font-bold text-black">Province</label>
@@ -240,6 +273,7 @@ export default function SubprojectForm() {
                                 <option key={province} value={province}>{province}</option>
                             ))}
                         </select>
+                        {errors.province && <p className="text-red-500 text-sm">{errors.province}</p>}
                     </div>
                     <div>
                         <label htmlFor="municipality" className="block font-bold text-black">Municipality</label>

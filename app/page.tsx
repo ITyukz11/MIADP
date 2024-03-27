@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-2 relative">
+    <main className="flex min-h-screen flex-col items-center justify-between p-2 relative overflow-hidden overflow-x-auto">
       <div className="absolute inset-0 z-0">
         <Image
           src="/background_agriculture.jpg"
